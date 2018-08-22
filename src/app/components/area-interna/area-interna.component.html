@@ -1,0 +1,55 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="toolbar">
+        <button mat-icon-button (click)="snav.toggle()" class="icono"><i class="fas fa-bars"></i></button>
+        <div>
+            <button mat-button [matMenuTriggerFor]="menu">{{usuario.nombre}}</button>
+            <mat-menu #menu="matMenu">
+                <button *ngIf="usuario.role == 'ADMIN_ROLE'" [routerLink]="['usuarios']" mat-menu-item>Usuarios</button>
+                <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+            </mat-menu>
+        </div>
+
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="mobileQuery.matches ? 'false' : 'true'">
+            <mat-nav-list>
+
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Fiscal
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <a mat-list-item [routerLink]="[ 'beneficio' ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-list-ul"></i><span class="margen-left">Beneficio</span>
+                        </a>
+
+                        <!-- <a mat-list-item [routerLink]="[ '/recetas' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
+                          <i class="fas fa-list-ul"></i><span class="margen-left">Listado</span>
+                      </a>
+                      <a mat-list-item [routerLink]="[ '/receta/nueva' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
+                          <i class="far fa-plus-square"></i><span class="margen-left">Nueva</span>
+                      </a> -->
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Laboral
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <a mat-list-item [routerLink]="[ 'trabajadores' ]" (click)="ocultarMenu(snav)">Trabajadores</a>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>

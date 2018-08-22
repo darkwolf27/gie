@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.margen-left {
+    margin-left: 10px;
+}
+
+.alerta {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(53, 25, 104);
+    background: rgb(208, 196, 235);
+    color: rgb(53, 25, 104);
+    font-weight: 1.5em;
+    padding: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

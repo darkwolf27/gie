@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.icono {
+    font-size: 1.3em;
+}
+
+.menuAux {
+    margin-top: 10px;
+    position: absolute;
+    right: 0%;
+    background-color: white;
+    -webkit-box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
+}
+
+.buscar {
+    display: flex;
+    align-items: center;
+    mat-checkbox {
+        margin-left: 8px;
+        font-size: 0.8em;
+    }
+    #buscar {
+        height: 27px;
+        padding-left: 10px;
+    }
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    input {
+        border: solid 2px rgb(67, 39, 119);
+        padding-left: 5px;
+        background: white;
+        height: 40%;
+        color: black;
+        border-radius: 3px;
+        -webkit-box-shadow: 10px 10px 15px -12px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 15px -12px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 10px 15px -12px rgba(0, 0, 0, 0.75);
+    }
+}
+
+.is-mobile .toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+h1.app-name {
+    margin-left: 8px;
+}
+
+.sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.is-mobile .sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
+
+.active {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #673DB6;
+}
+
+mat-nav-list {
+    margin: 5px;
+}
+
+mat-sidenav-content {
+    padding: 20px;
+}

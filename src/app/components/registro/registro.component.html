@@ -1,0 +1,29 @@
+<div>
+    <form class="formRegistro" [formGroup]="form" (ngSubmit)="register()" novalidate>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="email" placeholder="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Contraseña" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Repetir contraseña" formControlName="password2">
+        </mat-form-field>
+        <button color="primary" mat-raised-button type="submit" [disabled]="form.invalid">
+        Unirse
+        </button>
+    </form>
+    <p>
+        ¿Ya tienes cuenta? <a [routerLink]="[ '/login' ]">¡Entra!</a>
+    </p>
+</div>
+
+
+<swal #UserCreated title="¡Usuario Creado!" type="success" (confirm)="swalOK()">
+</swal>
+
+<swal #ErrorCreateUser type="error">
+</swal>

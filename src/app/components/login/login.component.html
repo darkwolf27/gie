@@ -1,0 +1,25 @@
+<div class="container">
+    <form class="container-login" [formGroup]="form" (ngSubmit)="singIn()" novalidate>
+        <mat-form-field>
+            <input matInput type="email" formControlName="email">
+            <mat-label>
+                <mat-icon><i class="fas fa-user"></i></mat-icon> email
+            </mat-label>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" formControlName="password">
+            <mat-label>
+                <mat-icon><i class="fas fa-key"></i></mat-icon> contraseña
+            </mat-label>
+        </mat-form-field>
+        <button color="primary" mat-raised-button type="submit" [disabled]="form.invalid">
+                Acceder
+            </button>
+    </form>
+    <p>
+        <a [routerLink]="[ '/registro' ]">Regístrate</a>
+    </p>
+</div>
+
+<swal #ErrorLogin title="Error en el login" type="error">
+</swal>
