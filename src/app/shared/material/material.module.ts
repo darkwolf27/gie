@@ -38,7 +38,9 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatPaginatorIntl,
 } from '@angular/material';
+import { MatPaginatorInternational } from './matPaginatorInternational';
 
 @NgModule({
   imports: [
@@ -83,6 +85,7 @@ import {
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: []
+  declarations: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorInternational}]
 })
 export class MaterialModule { }

@@ -12,16 +12,6 @@
     font-size: 1.3em;
 }
 
-.menuAux {
-    margin-top: 10px;
-    position: absolute;
-    right: 0%;
-    background-color: white;
-    -webkit-box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
-    box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.75);
-}
-
 .buscar {
     display: flex;
     align-items: center;
@@ -33,6 +23,10 @@
         height: 27px;
         padding-left: 10px;
     }
+}
+
+.opcionesMenuDerecha {
+    display: flex;
 }
 
 .toolbar {

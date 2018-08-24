@@ -5,5 +5,6 @@ export interface Usuario {
     role?: string;
     _id?: string;
     estado?: string;
+    empresas?: string[];
 
 }

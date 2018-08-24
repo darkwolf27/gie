@@ -1,0 +1,16 @@
+table {
+    width: 100%
+}
+
+.opcionesSuperiores {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.textSwalBorrar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

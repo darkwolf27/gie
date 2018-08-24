@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario.model';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 @Component({
   selector: 'app-area-interna',
@@ -12,8 +13,10 @@ import { Usuario } from '../../models/usuario.model';
 export class AreaInternaComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   panelOpenState = false;
-  menuAuxiliar = false;
   usuario: Usuario;
+  empresa;
+  nombreBtnEmpresa: string;
+  nombreBtnEmpresaMobile: string;
 
   private _mobileQueryListener: () => void;
 
@@ -24,9 +27,18 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
      private _usuarioSV: UsuarioService
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this._usuarioSV.mobile = this.mobileQuery.matches;
+    this._mobileQueryListener = () => {
+      changeDetectorRef.detectChanges();
+      this._usuarioSV.mobile = this.mobileQuery.matches;
+    };
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.nombreBtnEmpresa = 'Empresas';
+    this.nombreBtnEmpresaMobile = 'Empresas';
+    this.empresa = {};
   }
+
+  @ViewChild('ListEmpresas') private ListEmpresas: SwalComponent;
 
   ngOnInit() {
     this.usuario = this._usuarioSV.usuario;
@@ -44,5 +56,25 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
     if (this.mobileQuery.matches) {
       snav.toggle();
     }
+  }
+
+  cambiarEmpresa(empresa) {
+    this.empresa = empresa;
+    this.cambioNombre(empresa);
+    this._router.navigate(['/area-interna/beneficio', empresa.codigo]);
+    this.ListEmpresas.ngOnDestroy();
+
+  }
+
+  nombreEmpresa(): string {
+    if (this.mobileQuery.matches) {
+      return this.nombreBtnEmpresaMobile;
+    }
+    return this.nombreBtnEmpresa;
+  }
+
+  cambioNombre(empresa) {
+    this.nombreBtnEmpresa = String(empresa.nombre);
+    this.nombreBtnEmpresaMobile = String(`Empresa Nº ${empresa.codigo}`);
   }
 }

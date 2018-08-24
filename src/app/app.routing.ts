@@ -16,10 +16,11 @@ const ROUTES: Routes = [
     { path: 'registro', component: RegistroComponent },
     { path: 'area-interna', component: AreaInternaComponent, canActivate: [LoginGuardGuard], children: [
         {path: 'usuarios', component: ListUsuariosComponent},
-        {path: 'empresas-asignadas', component: EmpresasAsignadasComponent},
+        {path: 'usuario/empresas/:id', component: EmpresasAsignadasComponent},
         {path: 'beneficio', component: BeneficioComponent},
+        {path: 'beneficio/:empresa', component: BeneficioComponent},
         {path: 'trabajadores', component: TrabajadoresComponent},
-        {path: '', pathMatch: 'full', redirectTo: 'beneficio' }
+        { path: '', pathMatch: 'full', redirectTo: 'beneficio' }
     ] },
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }

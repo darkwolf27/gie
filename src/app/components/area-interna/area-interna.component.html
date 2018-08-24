@@ -1,13 +1,18 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="toolbar">
         <button mat-icon-button (click)="snav.toggle()" class="icono"><i class="fas fa-bars"></i></button>
-        <div>
-            <button mat-button [matMenuTriggerFor]="menu">{{usuario.nombre}}</button>
-            <mat-menu #menu="matMenu">
-                <button *ngIf="usuario.role == 'ADMIN_ROLE'" [routerLink]="['usuarios']" mat-menu-item>Usuarios</button>
-                <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
-            </mat-menu>
+        <div class="opcionesMenuDerecha">
+            <button #btnEmpresas mat-flat-button color="primary" [swal]="ListEmpresas">{{nombreEmpresa()}}</button>
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu">{{usuario.nombre}}</button>
+                <mat-menu #menu="matMenu">
+                    <button *ngIf="usuario.role == 'ADMIN_ROLE'" [routerLink]="['usuarios']" mat-menu-item>Usuarios</button>
+                    <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+                </mat-menu>
+            </div>
+
         </div>
+
 
     </mat-toolbar>
 
@@ -23,7 +28,7 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
 
-                        <a mat-list-item [routerLink]="[ 'beneficio' ]" (click)="ocultarMenu(snav)">
+                        <a mat-list-item [routerLink]="[ 'beneficio', empresa.codigo ]" (click)="ocultarMenu(snav)">
                             <i class="fas fa-list-ul"></i><span class="margen-left">Beneficio</span>
                         </a>
 
@@ -53,3 +58,11 @@
 
     </mat-sidenav-container>
 </div>
+
+<swal #ListEmpresas title="Empresas asignadas al usuario" [showConfirmButton]="false" [showCloseButton]="true">
+    <div *swalPartial>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let emp of usuario.empresas" (click)="cambiarEmpresa(emp)"> {{ emp.nombre }} </a>
+        </mat-nav-list>
+    </div>
+    <swal>

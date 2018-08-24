@@ -13,6 +13,7 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
+  mobile;
 
   constructor(
     private _http: HttpClient,
@@ -88,9 +89,30 @@ export class UsuarioService {
   }
 
   cargarUsuarios() {
-
     return this._http.get(`${URL}/usuarios?token=${this.token}`);
+  }
 
+  eliminarUsuario(id) {
+    return this._http.delete(`${URL}/usuario/${id}?token=${this.token}`);
+  }
+
+  cargarEmpresasUsuario(id) {
+    return this._http.get(`${URL}/usuario/${id}/empresas?token=${this.token}`);
+  }
+
+  addEmpresaUsuario(id, empresa) {
+    const params = JSON.stringify({
+      empresa: empresa}
+    );
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this._http.put( `${URL}/usuario/${id}/empresas?token=${this.token}`, params, {headers} );
+  }
+
+  deleteEmpresaUsuario(id, empresa) {
+    return this._http.delete( `${URL}/usuario/${id}/${empresa}?token=${this.token}` );
   }
 
 }
