@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { URL } from '../shared/config';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
-import {map, catchError} from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,20 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
+  empresa;
   mobile;
+  observableEmpresa;
 
   constructor(
     private _http: HttpClient,
     public _router: Router
   ) {
     this.cargarStorage();
+    this.observableEmpresa = new BehaviorSubject<any>(this.empresa);
+  }
+
+  eventCambioEmpresa() {
+    this.observableEmpresa.next(this.empresa);
   }
 
   estaLogueado() {
@@ -31,11 +39,22 @@ export class UsuarioService {
     if ( localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse( localStorage.getItem('usuario') );
+      if (localStorage.getItem('empresa')) {
+        this.empresa = JSON.parse( localStorage.getItem('empresa') );
+      } else {
+        this.empresa = null;
+      }
     } else {
       this.token = '';
       this.usuario = null;
     }
 
+  }
+
+  StorageEmpresa(empresa) {
+    localStorage.setItem('empresa', JSON.stringify(empresa) );
+    this.empresa = empresa;
+    this.eventCambioEmpresa();
   }
 
   guardarStorage( token: string, usuario: Usuario ) {
@@ -64,10 +83,13 @@ export class UsuarioService {
 
   logout() {
     this.usuario = null;
+    this.empresa = null;
+    this.eventCambioEmpresa();
     this.token = '';
 
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('empresa');
 
     this._router.navigate(['/login']);
   }
@@ -79,13 +101,7 @@ export class UsuarioService {
       'Content-Type': 'application/json'
     });
 
-    return this._http.post( `${URL}/usuario`, params, {headers} )
-    .pipe(
-      map( (resp: any) => {
-        this.guardarStorage(resp.token, resp. usuario);
-        return true;
-      })
-    );
+    return this._http.post( `${URL}/usuario`, params, {headers} );
   }
 
   cargarUsuarios() {

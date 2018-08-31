@@ -1,5 +1,5 @@
 <div>
-    <form class="formRegistro" [formGroup]="form" (ngSubmit)="register()" novalidate>
+    <form class="formRegistro" [formGroup]="form" (ngSubmit)="register()" ngNativeValidate>
         <mat-form-field>
             <input matInput type="text" placeholder="Nombre" formControlName="nombre">
         </mat-form-field>
@@ -12,18 +12,26 @@
         <mat-form-field>
             <input matInput type="password" placeholder="Repetir contraseña" formControlName="password2">
         </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Rol" formControlName="rol" (selectionChange)="cambioRol($event.value)">
+                <mat-option value="ADMIN_ROLE">Administrador</mat-option>
+                <mat-option value="ASESOR_ROLE">Asesor</mat-option>
+                <mat-option value="CUSTOM_ROLE">Cliente</mat-option>
+                <mat-option value="EMPLOYEE_ROLE">Trabajador</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="trabajador">
+            <input matInput type="text" placeholder="DNI o NIE" formControlName="dni">
+        </mat-form-field>
         <button color="primary" mat-raised-button type="submit" [disabled]="form.invalid">
         Unirse
         </button>
     </form>
-    <p>
-        ¿Ya tienes cuenta? <a [routerLink]="[ '/login' ]">¡Entra!</a>
-    </p>
 </div>
 
 
 <swal #UserCreated title="¡Usuario Creado!" type="success" (confirm)="swalOK()">
 </swal>
 
-<swal #ErrorCreateUser type="error">
+<swal #ErrorCreateUser title="" type="error">
 </swal>

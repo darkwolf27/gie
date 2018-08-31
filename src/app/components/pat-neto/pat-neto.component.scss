@@ -1,0 +1,24 @@
+.cargando {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.alertaDisolucion {
+    margin-top: 25px;
+    font-style: italic;
+    color: rgb(182, 13, 13);
+}
+
+.card-contenido {
+    strong {
+        font-size: 1.2em;
+    }
+}

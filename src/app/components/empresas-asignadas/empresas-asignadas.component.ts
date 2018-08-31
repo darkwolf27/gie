@@ -33,7 +33,6 @@ export class EmpresasAsignadasComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('NuevaEmpresa') private NuevaEmpresa: SwalComponent;
 
   ngOnInit() {
 

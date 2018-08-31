@@ -2,7 +2,7 @@
     <mat-toolbar color="primary" class="toolbar">
         <button mat-icon-button (click)="snav.toggle()" class="icono"><i class="fas fa-bars"></i></button>
         <div class="opcionesMenuDerecha">
-            <button #btnEmpresas mat-flat-button color="primary" [swal]="ListEmpresas">{{nombreEmpresa()}}</button>
+            <button #btnEmpresas matTooltip="Cambiar de empresa" matTooltipPosition="below" mat-flat-button color="primary" [swal]="ListEmpresas">{{nombreEmpresa()}}</button>
             <div>
                 <button mat-button [matMenuTriggerFor]="menu">{{usuario.nombre}}</button>
                 <mat-menu #menu="matMenu">
@@ -29,7 +29,13 @@
                         </mat-expansion-panel-header>
 
                         <a mat-list-item [routerLink]="[ 'beneficio', empresa.codigo ]" (click)="ocultarMenu(snav)">
-                            <i class="fas fa-list-ul"></i><span class="margen-left">Beneficio</span>
+                            <i class="fas fa-hand-holding-usd"></i><span class="margen-left">Beneficio</span>
+                        </a>
+                        <a mat-list-item [routerLink]="[ 'ventas', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-coins"></i><span class="margen-left">Ventas</span>
+                        </a>
+                        <a mat-list-item [routerLink]="[ 'valor', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-gem"></i><span class="margen-left">Valor</span>
                         </a>
 
                         <!-- <a mat-list-item [routerLink]="[ '/recetas' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
@@ -46,7 +52,12 @@
                                 Laboral
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <a mat-list-item [routerLink]="[ 'trabajadores' ]" (click)="ocultarMenu(snav)">Trabajadores</a>
+                        <a mat-list-item [routerLink]="[ 'trabajadores', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-people-carry"></i><span class="margen-left">Trabajadores</span>
+                        </a>
+                        <a mat-list-item [routerLink]="[ 'costes-trabajadores', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-euro-sign"></i><span class="margen-left">Costes Laborales</span>
+                        </a>
                     </mat-expansion-panel>
                 </mat-accordion>
             </mat-nav-list>

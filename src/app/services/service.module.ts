@@ -4,6 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BeneficioService } from './beneficio.service';
 import { UsuarioService } from './usuario.service';
 import { LoginGuardGuard } from './guards/login.guard';
+import { TrabajadoresService } from './trabajadores.service';
+import { CifraNegocioService } from './cifra-negocio.service';
+import { ValorService } from './valor.service';
+import { CostesLaboralesService } from './costes-laborales.service';
 
 @NgModule({
   imports: [
@@ -13,7 +17,11 @@ import { LoginGuardGuard } from './guards/login.guard';
   providers: [
     BeneficioService,
     UsuarioService,
-    LoginGuardGuard
+    LoginGuardGuard,
+    TrabajadoresService,
+    CifraNegocioService,
+    ValorService,
+    CostesLaboralesService
   ],
   declarations: []
 })

@@ -12,6 +12,8 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class RegistroComponent implements OnInit {
 
+  trabajador: boolean;
+
   form: FormGroup;
   usuario: Usuario;
   @ViewChild('UserCreated') private UserCreated: SwalComponent;
@@ -21,11 +23,13 @@ export class RegistroComponent implements OnInit {
     private _usuarioSV: UsuarioService,
     private _router: Router
   ) {
+    this.trabajador = false;
     this.form = new FormGroup({
       'nombre': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required),
-      'password2': new FormControl('', Validators.required)
+      'password2': new FormControl('', Validators.required),
+      'rol': new FormControl('', Validators.required)
     }, { validators: this.passwordIgual('password', 'password2') });
   }
 
@@ -52,7 +56,7 @@ export class RegistroComponent implements OnInit {
   }
 
   swalOK() {
-    this._router.navigate(['/area-interna']);
+    this._router.navigate(['/area-interna/usuarios']);
   }
 
   register() {
@@ -62,10 +66,27 @@ export class RegistroComponent implements OnInit {
         this.UserCreated.show();
       },
       error => {
-        this.ErrorCreateUser.title = error.error.err;
+        this.ErrorCreateUser.title = error.error.err.message;
+        console.log(error.error.err);
+        console.log(this.ErrorCreateUser.title);
+        console.log(this.ErrorCreateUser);
         this.ErrorCreateUser.show();
       }
     );
+  }
+
+  cambioRol(rol) {
+    if (rol === 'EMPLOYEE_ROLE') {
+      if (!this.trabajador) {
+        this.trabajador = true;
+        this.form.addControl('dni', new FormControl('', Validators.required));
+      }
+    } else {
+      if (this.trabajador) {
+        this.trabajador = false;
+        this.form.removeControl('dni');
+      }
+    }
   }
 
 }

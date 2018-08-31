@@ -1,2 +1,13 @@
-<button [routerLink]="[ '/login' ]" mat-raised-button color="primary">Accede</button>
-<button [routerLink]="[ '/registro' ]" mat-stroked-button>Registro</button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h3>Listado de empresas</h3>
+        </mat-card-title>
+        <mat-card-subtitle>Seleccione una empresa</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let emp of _usuarioSV.usuario.empresas" (click)="cambiarEmpresa(emp)"> {{ emp.nombre }} </a>
+        </mat-nav-list>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,30 @@
+<div class="cargando" *ngIf="!datosCargados && empresa > 0">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card *ngIf="datosCargados">
+    <mat-card-header class="titulo">
+        <mat-card-title>
+            <h2>Valor de la empresa</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-contenido">
+        <p>
+            Capital: <strong>{{capital | currency:'EUR'}}</strong>
+        </p>
+        <p>
+            Patrimonio Neto: <strong>{{PatNeto | currency:'EUR'}}</strong>
+        </p>
+        <div *ngIf="PatNeto < (capital/2)" class="alertaDisolucion">
+            <p>
+                El patrimonio neto es inferior a la mitad del capital social.
+            </p>
+            <p>
+                Esta situación está contemplada en el artículo 363 de la Ley de Sociedades de Capital como causa de disolución obligarotia.
+            </p>
+            <p>
+                Por favor, póngase en contacto con nosotros.
+            </p>
+        </div>
+
+    </mat-card-content>
+</mat-card>

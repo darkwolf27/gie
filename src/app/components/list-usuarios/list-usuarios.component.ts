@@ -13,7 +13,7 @@ export class ListUsuariosComponent implements OnInit {
   usuarios: Usuario[];
   totalUsers: number;
   fuente: MatTableDataSource<Usuario>;
-  displayedColumns: string[] ;
+  displayedColumns: string[];
 
 
   constructor(

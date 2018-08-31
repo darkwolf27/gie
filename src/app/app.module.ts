@@ -15,14 +15,15 @@ import { APP_ROUTING } from './app.routing';
 import { AreaInternaComponent } from './components/area-interna/area-interna.component';
 import { BeneficioComponent } from './components/beneficio/beneficio.component';
 
-import { UsuarioService } from './services/usuario.service';
-import { BeneficioService } from './services/beneficio.service';
 import { TrabajadoresComponent } from './components/trabajadores/trabajadores.component';
 import { ServiceModule } from './services/service.module';
 import { RegistroComponent } from './components/registro/registro.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListUsuariosComponent } from './components/list-usuarios/list-usuarios.component';
 import { EmpresasAsignadasComponent } from './components/empresas-asignadas/empresas-asignadas.component';
+import { CifraNegocioComponent } from './components/cifra-negocio/cifra-negocio.component';
+import { PatNetoComponent } from './components/pat-neto/pat-neto.component';
+import { CostesLaboralesComponent } from './components/costes-laborales/costes-laborales.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -36,7 +37,10 @@ registerLocaleData(localeEs, 'es');
     RegistroComponent,
     HomeComponent,
     ListUsuariosComponent,
-    EmpresasAsignadasComponent
+    EmpresasAsignadasComponent,
+    CifraNegocioComponent,
+    PatNetoComponent,
+    CostesLaboralesComponent
   ],
   imports: [
     BrowserModule,

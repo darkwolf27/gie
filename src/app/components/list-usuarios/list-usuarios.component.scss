@@ -7,3 +7,10 @@ table {
     flex-direction: column;
     align-items: center;
 }
+
+.opcionesSuperiores {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

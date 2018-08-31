@@ -6,19 +6,17 @@ import { UsuarioService } from './usuario.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BeneficioService {
+export class CifraNegocioService {
 
   constructor(
     private _http: HttpClient,
     private _usuarioSV: UsuarioService
   ) { }
 
-  getResultado(year: number) {
-
+  getCifraNegocio(empresa: number, year: number) {
     const token = this._usuarioSV.token;
-    const empresa = this._usuarioSV.empresa;
 
-    const url = `${URL}/resultado?empresa=${empresa.codigo}&year=${year}&token=${token}`;
+    const url = `${URL}/cifraNegocio?empresa=${empresa}&year=${year}&token=${token}`;
 
     return this._http.get(url);
   }

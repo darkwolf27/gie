@@ -33,15 +33,29 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
       this._usuarioSV.mobile = this.mobileQuery.matches;
     };
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.nombreBtnEmpresa = 'Empresas';
-    this.nombreBtnEmpresaMobile = 'Empresas';
-    this.empresa = {};
+    if (this._usuarioSV.empresa) {
+      this.empresa = this._usuarioSV.empresa;
+      this.nombreBtnEmpresa = this.empresa.nombre;
+      this.nombreBtnEmpresaMobile = `Empresa Nº ${this.empresa.codigo}`;
+    } else {
+      this.nombreBtnEmpresa = 'Empresas';
+      this.nombreBtnEmpresaMobile = 'Empresas';
+      this.empresa = {};
+    }
   }
 
   @ViewChild('ListEmpresas') private ListEmpresas: SwalComponent;
 
   ngOnInit() {
     this.usuario = this._usuarioSV.usuario;
+    this._usuarioSV.observableEmpresa.subscribe(
+      empresa => {
+        if (empresa) {
+          this.empresa = empresa;
+          this.cambioNombre(empresa);
+        }
+      }
+    );
   }
 
   cerrarSesion() {
@@ -60,6 +74,7 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
 
   cambiarEmpresa(empresa) {
     this.empresa = empresa;
+    this._usuarioSV.StorageEmpresa(empresa);
     this.cambioNombre(empresa);
     this._router.navigate(['/area-interna/beneficio', empresa.codigo]);
     this.ListEmpresas.ngOnDestroy();
@@ -76,5 +91,6 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
   cambioNombre(empresa) {
     this.nombreBtnEmpresa = String(empresa.nombre);
     this.nombreBtnEmpresaMobile = String(`Empresa Nº ${empresa.codigo}`);
+    this.nombreEmpresa();
   }
 }

@@ -1,0 +1,43 @@
+<div class="cargando" *ngIf="!datosCargados && empresa > 0">
+    <div>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="container" *ngIf="datosCargados">
+    <mat-card class="CardCostesGrafico">
+        <mat-card-header>
+            <h3>Costes Laborales {{year}}: <span>{{costesTotales | currency:'EUR'}}</span></h3>
+            <mat-form-field>
+                <mat-select placeholder="Cambiar ejercicio" (selectionChange)="cambioEjercicio($event.value)">
+                    <mat-option [value]="yearActual">{{yearActual}}</mat-option>
+                    <mat-option [value]="yearActual - 1">{{yearActual - 1}}</mat-option>
+                    <mat-option [value]="yearActual - 2">{{yearActual - 2}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="grafComparativa">
+                <ngx-charts-bar-horizontal [results]="data" yScaleMax="0" Axis="true" yAxis="true" xAxis="true" xAxisLabel="Ventas" yAxisLabel="Meses" (select)="SelectDato($event)">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card *ngIf="periodo" class="card-datos-periodo">
+        <mat-card-content>
+            <h3>Datos de {{periodo}}: <span>{{costesMes | currency:'EUR'}}</span></h3>
+            <p>
+                - Coste trabajadores (Salarios Brutos): <strong> {{Bruto | currency:'EUR'}} </strong>
+            </p>
+            <p>
+                - Coste Seguridad Social (Empresa): <strong> {{SSempresa | currency:'EUR'}} </strong>
+            </p>
+            <p>
+                - Indemnizaciones: <strong> {{Indemnizaciones | currency:'EUR'}} </strong>
+            </p>
+            <p>
+                - Otros gastos laborales: <strong> {{OtrosGastos | currency:'EUR'}} </strong>
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>
