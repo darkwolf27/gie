@@ -13,7 +13,7 @@ import { PatNetoComponent } from './components/pat-neto/pat-neto.component';
 import { CostesLaboralesComponent } from './components/costes-laborales/costes-laborales.component';
 
 const ROUTES: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'area-interna', component: AreaInternaComponent, canActivate: [LoginGuardGuard], children: [
         {path: 'home', component: HomeComponent},
@@ -30,7 +30,6 @@ const ROUTES: Routes = [
     ] },
     { path: '', pathMatch: 'full', redirectTo: 'login' },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
-
 
 ];
 

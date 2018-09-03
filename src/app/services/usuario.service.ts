@@ -75,6 +75,8 @@ export class UsuarioService {
     return this._http.post(`${URL}/login`, params, {headers})
       .pipe(
         map( (resp: any) => {
+          this.empresa = null;
+          this.eventCambioEmpresa();
           this.guardarStorage(resp.token, resp.usuario);
           return true;
         })
