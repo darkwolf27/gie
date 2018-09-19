@@ -24,7 +24,7 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
      media: MediaMatcher,
      private _router: Router,
-     private _usuarioSV: UsuarioService
+     public _usuarioSV: UsuarioService
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._usuarioSV.mobile = this.mobileQuery.matches;
@@ -76,7 +76,7 @@ export class AreaInternaComponent implements OnInit, OnDestroy {
     this.empresa = empresa;
     this._usuarioSV.StorageEmpresa(empresa);
     this.cambioNombre(empresa);
-    this._router.navigate(['/area-interna/beneficio', empresa.codigo]);
+    this._router.navigate(['/area-interna/panel-control']);
     this.ListEmpresas.ngOnDestroy();
 
   }

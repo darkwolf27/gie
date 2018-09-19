@@ -18,12 +18,17 @@ import { BeneficioComponent } from './components/beneficio/beneficio.component';
 import { TrabajadoresComponent } from './components/trabajadores/trabajadores.component';
 import { ServiceModule } from './services/service.module';
 import { RegistroComponent } from './components/registro/registro.component';
-import { HomeComponent } from './components/home/home.component';
 import { ListUsuariosComponent } from './components/list-usuarios/list-usuarios.component';
 import { EmpresasAsignadasComponent } from './components/empresas-asignadas/empresas-asignadas.component';
-import { CifraNegocioComponent } from './components/cifra-negocio/cifra-negocio.component';
+import { IngresosComponent } from './components/ingresos/ingresos.component';
+import { GastosComponent } from './components/gastos/gastos.component';
 import { PatNetoComponent } from './components/pat-neto/pat-neto.component';
 import { CostesLaboralesComponent } from './components/costes-laborales/costes-laborales.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { CalendarioModule } from './shared/calendario/calendario.module';
+import { TrabajadorAltaComponent } from './components/trabajador-alta/trabajador-alta.component';
+import { PipesModule } from './shared/pipes/pipes.module';
+import { PanelControlComponent } from './components/panel-control/panel-control.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -35,12 +40,15 @@ registerLocaleData(localeEs, 'es');
     BeneficioComponent,
     TrabajadoresComponent,
     RegistroComponent,
-    HomeComponent,
     ListUsuariosComponent,
     EmpresasAsignadasComponent,
-    CifraNegocioComponent,
+    IngresosComponent,
+    GastosComponent,
     PatNetoComponent,
-    CostesLaboralesComponent
+    CostesLaboralesComponent,
+    CalendarioComponent,
+    TrabajadorAltaComponent,
+    PanelControlComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +58,10 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
+    PipesModule,
     NgxChartsModule,
     SweetAlert2Module.forRoot(),
+    CalendarioModule,
     APP_ROUTING
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],

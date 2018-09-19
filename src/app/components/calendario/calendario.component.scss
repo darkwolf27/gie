@@ -1,0 +1,33 @@
+@import "../../shared/calendario/calendario-mes.component.scss";
+button {
+    i {
+        font-size: 1.5em;
+    }
+}
+
+.wrapCalendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div {
+        display: flex;
+        justify-items: flex-start;
+        width: $dayBase * 7;
+        i {
+            margin-right: 10px;
+        }
+        @media screen and (min-width: 750px) {
+            width: 60px * 7;
+        }
+    }
+    @media screen and (min-width: 1000px) {
+        flex-direction: row;
+        align-items: flex-start;
+        div {
+            margin-left: 15px;
+            mat-list-item {
+                font-size: 1.2em;
+            }
+        }
+    }
+}

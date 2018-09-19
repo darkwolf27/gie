@@ -5,7 +5,7 @@ import { BeneficioService } from './beneficio.service';
 import { UsuarioService } from './usuario.service';
 import { LoginGuardGuard } from './guards/login.guard';
 import { TrabajadoresService } from './trabajadores.service';
-import { CifraNegocioService } from './cifra-negocio.service';
+import { IngresosService } from './ingresos.service';
 import { ValorService } from './valor.service';
 import { CostesLaboralesService } from './costes-laborales.service';
 
@@ -19,7 +19,7 @@ import { CostesLaboralesService } from './costes-laborales.service';
     UsuarioService,
     LoginGuardGuard,
     TrabajadoresService,
-    CifraNegocioService,
+    IngresosService,
     ValorService,
     CostesLaboralesService
   ],

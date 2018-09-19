@@ -1,3 +1,4 @@
+import { Empresa } from '../components/empresas-asignadas/empresas-asignadas.component';
 export interface Usuario {
     nombre: string;
     email: string;
@@ -5,6 +6,6 @@ export interface Usuario {
     role?: string;
     _id?: string;
     estado?: string;
-    empresas?: string[];
+    empresas?: Empresa[];
 
 }

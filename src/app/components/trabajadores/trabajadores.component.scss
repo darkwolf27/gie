@@ -2,6 +2,15 @@ table {
     width: 100%
 }
 
-.filtro {
+.menu-filtro {
     margin-top: 10px;
+}
+
+.wrapBtnAlta {
+    display: flex;
+    justify-content: flex-end;
+    button {
+        font-size: 1.1em;
+    }
+    top: 70px;
 }

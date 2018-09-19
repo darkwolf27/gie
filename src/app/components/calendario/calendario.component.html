@@ -1,0 +1,16 @@
+<div class="btnFabApp">
+    <button mat-fab color="primary" [swal]="NuevaEmpresa">
+        <i class="fas fa-plus"></i>
+    </button>
+</div>
+<div class="wrapCalendar">
+    <app-calendario-mes #calendario (SelectDate)="cambioDia($event.mDate)"></app-calendario-mes>
+    <div *ngIf="eventosUser.length > 0">
+        <mat-list>
+            <mat-list-item *ngFor="let evento of eventosUser"><i class="fas fa-map-pin"></i> {{evento.descripcion}}</mat-list-item>
+        </mat-list>
+    </div>
+</div>
+
+<swal #NuevaEmpresa title="Añadir evento" input="text" type="info" (confirm)="CrearEvento($event)">
+</swal>

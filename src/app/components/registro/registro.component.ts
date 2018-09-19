@@ -67,9 +67,6 @@ export class RegistroComponent implements OnInit {
       },
       error => {
         this.ErrorCreateUser.title = error.error.err.message;
-        console.log(error.error.err);
-        console.log(this.ErrorCreateUser.title);
-        console.log(this.ErrorCreateUser);
         this.ErrorCreateUser.show();
       }
     );

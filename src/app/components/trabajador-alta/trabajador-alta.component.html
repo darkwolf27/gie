@@ -1,0 +1,71 @@
+<div class="wrapForm">
+    <form class="formAltaTrabajador" [formGroup]="formTrabajador" (ngSubmit)="AltaTrabajador()" ngNativeValidate>
+        <p class="p-indicaciones">
+            Todos los campos señalados con un (*) son obligatorios.
+        </p>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Nombre*" formControlName="nombre">
+            <mat-error *ngIf="formTrabajador.get('nombre').invalid">El nombre es obligatorio</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Apellidos*" formControlName="apellidos">
+            <mat-error *ngIf="formTrabajador.get('apellidos').invalid">Los apellidos son obligatorios</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="DNI o NIE*" formControlName="dni">
+            <mat-error *ngIf="formTrabajador.get('dni').invalid">El DNI o NIE es obligatorio</mat-error>
+        </mat-form-field>
+        <p class="p-indicaciones">Si el trabajador es extranjero, por favor, adjuntar el NIE como documento. En caso de DNI, si se desea, también puede adjuntarse.</p>
+        <div class="archivo">
+            <label for="file"><i class="fas fa-file-upload"></i> DNI/NIE - Parte delantera</label>
+            <input type="file" id="file" name="file" accept=".jpeg, .jpg, .png, .pdf" (change)="seleccionDocumento($event.target.files[0], 1)">
+        </div>
+        <p>{{archivoTextoDelantera}}</p>
+        <div class="archivo">
+            <label for="file2"><i class="fas fa-file-upload"></i> DNI/NIE - Parte trasera</label>
+            <input type="file" id="file2" name="file2" accept=".jpeg, .jpg, .png, .pdf" (change)="seleccionDocumento($event.target.files[0], 2)">
+        </div>
+        <p>{{archivoTextoTrasera}}</p>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de alta*" formControlName="fechaAlta">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+            <mat-error *ngIf="formTrabajador.get('fechaAlta').invalid">La fecha de alta es obligatoria</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Categoría*" formControlName="categoria">
+            <mat-error *ngIf="formTrabajador.get('categoria').invalid">Debe indicar una categoría</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Contrato*" formControlName="contrato">
+                <mat-option value="INDEFINIDO">Indefinido</mat-option>
+                <mat-option value="TEMPORAL">Temporal</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formTrabajador.get('contrato').invalid">Debe seleccionar un tipo de contrato</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Jornada*" formControlName="jornada" (selectionChange)="cambioJornada($event.value)">
+                <mat-option value="COMPLETA">Completa</mat-option>
+                <mat-option value="PARCIAL">Parcial</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formTrabajador.get('jornada').invalid">Debe seleccionar el tipo de jornada</mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="jornadaParcial">
+            <input matInput type="number" placeholder="Nº de horas a la semana*" formControlName="horas">
+            <mat-error *ngIf="formTrabajador.get('nombre').invalid">Se debe indicar el número de horas de la jornada a la semana</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="Observaciones" formControlName="observaciones"></textarea>
+        </mat-form-field>
+
+        <button class="btnAlta" color="primary" mat-raised-button type="submit" [disabled]="formTrabajador.invalid">
+        Enviar alta
+        </button>
+    </form>
+</div>
+
+<swal #AltaCorrecta title="Alta enviada con éxito!" type="success" (confirm)="swalOK()">
+</swal>
+
+<swal #ErrorAlta title="" type="error">
+</swal>

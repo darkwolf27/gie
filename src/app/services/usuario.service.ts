@@ -5,6 +5,7 @@ import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { Empresa } from '../components/empresas-asignadas/empresas-asignadas.component';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
-  empresa;
+  empresa: Empresa;
   mobile;
   observableEmpresa;
 
@@ -35,6 +36,7 @@ export class UsuarioService {
   }
 
   cargarStorage() {
+
 
     if ( localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
@@ -78,6 +80,7 @@ export class UsuarioService {
           this.empresa = null;
           this.eventCambioEmpresa();
           this.guardarStorage(resp.token, resp.usuario);
+          this.cargarStorage();
           return true;
         })
     );

@@ -80,3 +80,15 @@ mat-nav-list {
 mat-sidenav-content {
     padding: 20px;
 }
+
+.panel-control {
+    width: 224.516px;
+    a {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        i {
+            margin-left: 8px;
+            margin-right: 10px;
+        }
+    }
+    margin-bottom: 10px;
+}

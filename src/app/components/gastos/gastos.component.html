@@ -6,7 +6,7 @@
 <div class="container" *ngIf="datosCargados">
     <mat-card class="CardCostesGrafico">
         <mat-card-header>
-            <h3>Ventas {{year}}: <span>{{cifraTotal | currency:'EUR'}}</span></h3>
+            <h3>Gastos {{year}}: <span>{{gastosTotales | currency:'EUR'}}</span></h3>
             <mat-form-field>
                 <mat-select placeholder="Cambiar ejercicio" (selectionChange)="cambioEjercicio($event.value)">
                     <mat-option [value]="yearActual">{{yearActual}}</mat-option>

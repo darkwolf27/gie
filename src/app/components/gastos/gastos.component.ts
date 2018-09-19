@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CifraNegocioService } from '../../services/cifra-negocio.service';
+import { GastosService } from '../../services/gastos.service';
 
 @Component({
-  selector: 'app-cifra-negocio',
-  templateUrl: './cifra-negocio.component.html',
-  styleUrls: ['./cifra-negocio.component.scss']
+  selector: 'app-gastos',
+  templateUrl: './gastos.component.html',
+  styleUrls: ['./gastos.component.scss']
 })
-export class CifraNegocioComponent implements OnInit {
+export class GastosComponent implements OnInit {
 
   data;
   empresa: number;
   year: number;
   yearActual: number;
   datosCargados: boolean;
-  cifraTotal: number;
+  gastosTotales: number;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _cifraNegocioSV: CifraNegocioService
+    private _gastosSV: GastosService
   ) {
     this.year = new Date().getFullYear();
     this.yearActual = new Date().getFullYear();
@@ -35,16 +35,16 @@ export class CifraNegocioComponent implements OnInit {
           this.empresa = Number(params['empresa']);
         }
         if (this.empresa > 0) {
-          this._cifraNegocioSV.getCifraNegocio(this.empresa, this.year).subscribe(
+          this._gastosSV.getGastos(this.empresa, this.year).subscribe(
             (resp: any) => {
               resp.data.forEach(per => {
                 const periodo = {
-                  'name': per.periodo,
+                  'name': per.periodoNombre,
                   'value': per.resultado
                 };
                 this.data.push(periodo);
 
-                this.cifraTotal = per.resAcumulado;
+                this.gastosTotales = per.resAcumulado;
               });
 
               this.datosCargados = true;

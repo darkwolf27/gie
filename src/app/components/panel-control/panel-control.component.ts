@@ -3,11 +3,11 @@ import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-panel-control',
+  templateUrl: './panel-control.component.html',
+  styleUrls: ['./panel-control.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PanelControlComponent implements OnInit {
 
   constructor(
     public _usuarioSV: UsuarioService,
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   cambiarEmpresa(empresa) {
     this._usuarioSV.StorageEmpresa(empresa);
-    this._router.navigate(['/area-interna/beneficio', empresa.codigo]);
+    this._router.navigate(['/area-interna/panel-control']);
   }
 
 }

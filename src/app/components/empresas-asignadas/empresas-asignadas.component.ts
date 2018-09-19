@@ -4,10 +4,13 @@ import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
-interface Empresa {
+export interface Empresa {
   codigo: number;
   nombre: string;
   nif: string;
+  pfiscal: string;
+  plaboral: string;
+  tipoPersona: number;
 }
 
 @Component({

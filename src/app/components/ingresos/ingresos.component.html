@@ -1,0 +1,26 @@
+<div class="cargando" *ngIf="!datosCargados && empresa > 0">
+    <div>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="container" *ngIf="datosCargados">
+    <mat-card class="CardCostesGrafico">
+        <mat-card-header>
+            <h3>Ingresos {{year}}: <span>{{ingresosTotales | currency:'EUR'}}</span></h3>
+            <mat-form-field>
+                <mat-select placeholder="Cambiar ejercicio" (selectionChange)="cambioEjercicio($event.value)">
+                    <mat-option [value]="yearActual">{{yearActual}}</mat-option>
+                    <mat-option [value]="yearActual - 1">{{yearActual - 1}}</mat-option>
+                    <mat-option [value]="yearActual - 2">{{yearActual - 2}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="grafComparativa">
+                <ngx-charts-bar-horizontal [results]="data" yScaleMax="0" Axis="true" yAxis="true" xAxis="true" xAxisLabel="Ventas" yAxisLabel="Meses">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>

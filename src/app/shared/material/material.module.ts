@@ -39,8 +39,10 @@ import {
   MatTooltipModule,
   MatTreeModule,
   MatPaginatorIntl,
+  DateAdapter,
 } from '@angular/material';
 import { MatPaginatorInternational } from './matPaginatorInternational';
+import { MyDateAdapter } from './dateAdapterEs';
 
 @NgModule({
   imports: [
@@ -86,6 +88,6 @@ import { MatPaginatorInternational } from './matPaginatorInternational';
     MatTreeModule,
   ],
   declarations: [],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorInternational}]
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorInternational}, {provide: DateAdapter, useClass: MyDateAdapter}]
 })
 export class MaterialModule { }

@@ -7,6 +7,7 @@
                 <button mat-button [matMenuTriggerFor]="menu">{{usuario.nombre}}</button>
                 <mat-menu #menu="matMenu">
                     <button *ngIf="usuario.role == 'ADMIN_ROLE'" [routerLink]="['usuarios']" mat-menu-item>Usuarios</button>
+                    <button mat-menu-item [routerLink]="['calendario']">Calendario</button>
                     <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
                 </mat-menu>
             </div>
@@ -20,8 +21,12 @@
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="mobileQuery.matches ? 'false' : 'true'">
             <mat-nav-list>
 
+                <mat-list class="mat-elevation-z2 panel-control">
+                    <a mat-list-item [routerLink]="['panel-control']"><i class="fas fa-desktop"></i>Panel Control</a>
+                </mat-list>
+
                 <mat-accordion>
-                    <mat-expansion-panel>
+                    <mat-expansion-panel *ngIf="_usuarioSV.empresa">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Fiscal
@@ -31,10 +36,13 @@
                         <a mat-list-item [routerLink]="[ 'beneficio', empresa.codigo ]" (click)="ocultarMenu(snav)">
                             <i class="fas fa-hand-holding-usd"></i><span class="margen-left">Beneficio</span>
                         </a>
-                        <a mat-list-item [routerLink]="[ 'ventas', empresa.codigo ]" (click)="ocultarMenu(snav)">
-                            <i class="fas fa-coins"></i><span class="margen-left">Ventas</span>
+                        <a mat-list-item [routerLink]="[ 'ingresos', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-coins"></i><span class="margen-left">Ingresos</span>
                         </a>
-                        <a mat-list-item [routerLink]="[ 'valor', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                        <a mat-list-item [routerLink]="[ 'gastos', empresa.codigo ]" (click)="ocultarMenu(snav)">
+                            <i class="fas fa-money-check-alt"></i><span class="margen-left">Gastos</span>
+                        </a>
+                        <a *ngIf="_usuarioSV.empresa.tipoPersona == -1" mat-list-item [routerLink]="[ 'valor', empresa.codigo ]" (click)="ocultarMenu(snav)">
                             <i class="fas fa-gem"></i><span class="margen-left">Valor</span>
                         </a>
 
@@ -46,7 +54,7 @@
                       </a> -->
 
                     </mat-expansion-panel>
-                    <mat-expansion-panel>
+                    <mat-expansion-panel *ngIf="_usuarioSV.empresa">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Laboral

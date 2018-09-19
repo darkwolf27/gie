@@ -1,0 +1,230 @@
+$dayBase: 40px;
+$base: 2px;
+$concrete: grey;
+.calendar {
+    display: block;
+    width: $dayBase * 7;
+    margin: 0 auto;
+    * {
+        box-sizing: border-box;
+    }
+    .calendar-navs {
+        // background-color: aquamarine;
+    }
+    .month-nav {
+        padding: $base;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        span {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+    .year-nav {
+        padding: $base;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Montserrat';
+        span {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+    .month-grid {
+        .day-names {
+            display: flex;
+            flex-direction: row;
+            background: rgba(173, 171, 171, 0.486);
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            font-weight: bold;
+        }
+        .weeks {
+            display: flex;
+            flex-direction: column;
+        }
+        .week {
+            display: flex;
+            flex-direction: row;
+        }
+        .week-date,
+        .day-name {
+            text-align: center;
+            padding: $base;
+            display: block;
+            width: $dayBase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .week-date {
+            height: $dayBase;
+            position: relative;
+            .date-text {
+                z-index: 10;
+                font-size: 15px;
+                font-family: 'Montserrat', sans-serif;
+            }
+            &::after {
+                content: '';
+                height: $dayBase * 0.9;
+                width: $dayBase * 0.9;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                transition: background-color 150ms linear, color 150ms linear;
+                z-index: 1;
+            }
+            &.enabled {
+                cursor: pointer;
+                &:hover {
+                    &::after {
+                        background-color: #4152B4;
+                    }
+                }
+            }
+            &.selected {
+                color: white;
+                &::after {
+                    background-color: #4152B4;
+                }
+                &:hover {
+                    &:after {
+                        background-color: #4152B4;
+                    }
+                }
+            }
+            &.disabled {
+                color: lightblue;
+            }
+            &.events {
+                margin: 0.5px;
+                border: solid 1px rgb(170, 7, 7);
+                border-radius: 50%;
+            }
+        }
+        .today {
+            font-weight: bold;
+            color: #4152B4;
+        }
+    }
+}
+
+@media screen and (min-width: 750px) {
+    $dayBase: 60px;
+    .calendar {
+        display: block;
+        width: $dayBase * 7;
+        margin: 0 auto;
+        * {
+            box-sizing: border-box;
+        }
+        .calendar-navs {
+            // background-color: aquamarine;
+        }
+        .month-nav {
+            padding: $base;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            span {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+        }
+        .year-nav {
+            padding: $base;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat';
+            span {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+        }
+        .month-grid {
+            .day-names {
+                display: flex;
+                flex-direction: row;
+                background: rgba(173, 171, 171, 0.486);
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                font-weight: bold;
+            }
+            .weeks {
+                display: flex;
+                flex-direction: column;
+            }
+            .week {
+                display: flex;
+                flex-direction: row;
+            }
+            .week-date,
+            .day-name {
+                text-align: center;
+                padding: $base;
+                display: block;
+                width: $dayBase;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .week-date {
+                height: $dayBase;
+                position: relative;
+                .date-text {
+                    z-index: 10;
+                    font-size: 20px;
+                    font-family: 'Montserrat', sans-serif;
+                }
+                &::after {
+                    content: '';
+                    height: $dayBase * 0.9;
+                    width: $dayBase * 0.9;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 50%;
+                    transition: background-color 150ms linear, color 150ms linear;
+                    z-index: 1;
+                }
+                &.enabled {
+                    cursor: pointer;
+                    &:hover {
+                        &::after {
+                            background-color: #4152B4;
+                        }
+                    }
+                }
+                &.selected {
+                    color: white;
+                    &::after {
+                        background-color: #4152B4;
+                    }
+                    &:hover {
+                        &:after {
+                            background-color: #4152B4;
+                        }
+                    }
+                }
+                &.disabled {
+                    color: lightblue;
+                }
+            }
+            .today {
+                font-weight: bold;
+                color: #B40C10;
+            }
+        }
+    }
+}

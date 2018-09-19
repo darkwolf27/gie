@@ -1,8 +1,14 @@
+<div class="wrapBtnAlta btnFabApp">
+    <button mat-fab color="primary" [routerLink]="['/area-interna/alta-trabajador']"><i class="fas fa-user-plus"></i></button>
+</div>
 <mat-tab-group>
     <mat-tab label="Fijos">
-        <mat-form-field class="filtro">
-            <input matInput (keyup)="applyFilterFijos($event.target.value)" placeholder="Buscar">
-        </mat-form-field>
+        <div class="menu-filtro">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilterFijos($event.target.value)" placeholder="Buscar">
+            </mat-form-field>
+        </div>
+
 
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="fuenteFijos" matSort #SortFijos="matSort">
